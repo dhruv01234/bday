@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Sanchita 💕</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <audio id="birthdayAudio" loop>
+        <source src="bday.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Landing Page -->
+    <div id="landing" class="screen active">
+        <div class="landing-content">
+            <h1 class="title-animation">✨ A Special Day ✨</h1>
+            <p class="subtitle">Click the heart below to open your surprise...</p>
+            <div class="heart-container">
+                <div class="heart" id="landingHeart"></div>
+            </div>
+            <button class="click-btn" id="openBtn">Click Here 💌</button>
+        </div>
+        <div class="floating-particles">
+            <span class="particle">💕</span>
+            <span class="particle">🌹</span>
+            <span class="particle">✨</span>
+            <span class="particle">💕</span>
+            <span class="particle">🌹</span>
+            <span class="particle">✨</span>
+        </div>
+    </div>
+
+    <!-- Envelope Screen -->
+    <div id="envelope-screen" class="screen">
+        <div class="envelope-decorations">
+            <span class="deco-heart">💕</span>
+            <span class="deco-heart">🌹</span>
+            <span class="deco-heart">✨</span>
+            <span class="deco-heart">💕</span>
+            <span class="deco-heart">🌹</span>
+            <span class="deco-heart">✨</span>
+            <span class="deco-heart">💕</span>
+            <span class="deco-heart">🌹</span>
+        </div>
+        
+        <div class="envelope-container">
+            <div class="envelope" id="envelope">
+                <div class="envelope-top"></div>
+                <div class="envelope-body">
+                    <div class="envelope-content">
+                        <p>Open me... 💌</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class="click-text">Click the envelope to reveal your message...</p>
+    </div>
+
+    <!-- Birthday Message Screen -->
+    <div id="message-screen" class="screen">
+        <div class="message-container">
+            <div class="confetti-container" id="confetti"></div>
+            
+            <div class="birthday-content">
+                <h1 class="happy-birthday">🎉 HAPPY BIRTHDAY! 🎉</h1>
+                <h2 class="name-text">Sanchita</h2>
+                
+                <div class="love-letter">
+                    <p class="letter-date">March 30th, 2026</p>
+                    <p class="letter-greeting">My Dearest Sanchita,</p>
+                    
+                    <div class="letter-body">
+                        <p>
+                            Today is the day the world became a more beautiful place, because you were born. 
+                            I wanted to take this moment to tell you something that I feel every single day...
+                        </p>
+                        <p>
+                            You are not just my lifeline, you are my greatest surprise, my sweetest dream, 
+                            and my most beautiful reality. Your smile brightens my darkest days, your laugh 
+                            is the best music I could ever hear, and your love has transformed my life completely.
+                        </p>
+                        <p>
+                            Every moment with you feels like a celebration. The way you care, the way you love, 
+                            the way you make everyone around you feel special - it all makes me fall in love with 
+                            you more and more each day.
+                        </p>
+                        <p>
+                            On this special day, I want you to know that you deserve all the happiness in the world. 
+                            You deserve to be cherished, celebrated, and loved the way you love others. And I promise 
+                            to spend the rest of my life making you smile and showing you how incredible you truly are.
+                        </p>
+                        <p>
+                            Thank you for being you. Thank you for loving me. Thank you for making life an adventure 
+                            full of love and laughter.
+                        </p>
+                    </div>
+                    
+                    <p class="letter-closing">With all my love,</p>
+                    <p class="letter-signature">Your loving one 💕</p>
+                </div>
+
+                <button class="next-btn" id="nextBtn">See More Surprises 🎁</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Photo & Memories Screen -->
+    <div id="memories-screen" class="screen">
+        <div class="memories-container">
+            <h2 class="section-title">✨ Moments of Love ✨</h2>
+            
+            <div class="memories-grid">
+                <div class="memory-card" data-text="Every moment with you is my favorite">
+                    <div class="memory-item">
+                        <span class="memory-emoji">❤️</span>
+                        <p>Your love</p>
+                    </div>
+                </div>
+                
+                <div class="memory-card" data-text="You make my heart skip a beat">
+                    <div class="memory-item">
+                        <span class="memory-emoji">💕</span>
+                        <p>Your smile</p>
+                    </div>
+                </div>
+                
+                <div class="memory-card" data-text="With you, forever is not long enough">
+                    <div class="memory-item">
+                        <span class="memory-emoji">🌹</span>
+                        <p>Your presence</p>
+                    </div>
+                </div>
+                
+                <div class="memory-card" data-text="You are my greatest blessing">
+                    <div class="memory-item">
+                        <span class="memory-emoji">✨</span>
+                        <p>Your essence</p>
+                    </div>
+                </div>
+                
+                <div class="memory-card" data-text="My life is better because you're in it">
+                    <div class="memory-item">
+                        <span class="memory-emoji">🎀</span>
+                        <p>Your kindness</p>
+                    </div>
+                </div>
+                
+                <div class="memory-card" data-text="Forever and always, you'll be my first choice">
+                    <div class="memory-item">
+                        <span class="memory-emoji">💝</span>
+                        <p>Your heart</p>
+                    </div>
+                </div>
+            </div>
+
+            <button class="next-btn" id="finalBtn">One Last Surprise... 🎆</button>
+        </div>
+    </div>
+
+    <!-- Final Screen - Celebration -->
+    <div id="final-screen" class="screen">
+        <!-- <div class="floating-background"></div> -->
+        <div class="final-container">
+            <div class="final-left-column">
+                <div class="name-animation-container">
+                    <h1 class="animated-name" id="animatedName">HAPPY BIRTHDAY<br><span class="my-love-text">MY LOVE</span> 💕</h1>
+                    <div class="orbiting-hearts" id="orbitingHearts"></div>
+                </div>
+                
+                <div class="floating-hearts-container">
+                    <span class="float-heart">💕</span>
+                    <span class="float-heart">💕</span>
+                    <span class="float-heart">💕</span>
+                    <span class="float-heart">💕</span>
+                    <span class="float-heart">💕</span>
+                    <span class="float-heart">💕</span>
+                    <span class="float-heart">💕</span>
+                    <span class="float-heart">🌹</span>
+                    <span class="float-heart">✨</span>
+                    <span class="float-heart">💌</span>
+                </div>
+
+                <div class="final-message-column">
+                    <p class="final-blessing">💫 May your day be filled with endless love and happiness 💫</p>
+                    <button class="restart-btn" id="restartBtn">Go Back & Start Again</button>
+                </div>
+            </div>
+
+            <div class="final-right-column">
+                <img src="IMG_6737.png" alt="Special Photo" class="final-photo">
+            </div>
+        </div>
+
+        <canvas id="fireworks"></canvas>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
