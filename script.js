@@ -1,3 +1,21 @@
+// Typewriter Effect
+function typewriterEffect(element, text, speed = 50) {
+    let index = 0;
+    element.textContent = '';
+    element.style.visibility = 'visible';
+    
+    function type() {
+        if (index < text.length) {
+            const char = text[index];
+            element.appendChild(document.createTextNode(char));
+            index++;
+            setTimeout(type, speed);
+        }
+    }
+    
+    type();
+}
+
 // Screen Navigation
 function showScreen(screenId) {
     document.querySelectorAll('.screen').forEach(screen => {
@@ -19,8 +37,121 @@ function playAudio() {
 // Landing Page
 document.getElementById('openBtn').addEventListener('click', function() {
     playAudio();
-    showScreen('envelope-screen');
+    showScreen('cake-screen');
 });
+
+// Cake Cutting Interaction
+let cakeCut = false;
+const cutBtn = document.getElementById('cutBtn');
+const cake = document.getElementById('cake');
+const cakeMessage = document.getElementById('cakeMessage');
+const cakeNextBtn = document.getElementById('cakeNextBtn');
+const knife = document.getElementById('knife');
+
+// Create particles effect
+function createCakeParticles() {
+    const particlesContainer = document.getElementById('cakeParticles');
+    const colors = ['#FFD700', '#FFA500', '#FF69B4', '#FF1493', '#FFB6C1'];
+    
+    for (let i = 0; i < 20; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('cake-particle');
+        
+        const size = Math.random() * 15 + 5;
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        const angle = (Math.PI * 2 * i) / 20;
+        const velocity = Math.random() * 8 + 5;
+        
+        particle.style.left = '50%';
+        particle.style.top = '50%';
+        particle.style.width = size + 'px';
+        particle.style.height = size + 'px';
+        particle.style.background = color;
+        particle.style.boxShadow = `0 0 ${size}px ${color}`;
+        
+        particlesContainer.appendChild(particle);
+        
+        // Animate particle
+        let startX = 0;
+        let startY = 0;
+        let vx = Math.cos(angle) * velocity;
+        let vy = Math.sin(angle) * velocity;
+        let life = 1;
+        
+        function animateParticle() {
+            startX += vx;
+            startY += vy;
+            vy += 0.15; // gravity
+            life -= 0.02;
+            
+            particle.style.transform = `translate(${startX}px, ${startY}px)`;
+            particle.style.opacity = life;
+            
+            if (life > 0) {
+                requestAnimationFrame(animateParticle);
+            } else {
+                particle.remove();
+            }
+        }
+        
+        animateParticle();
+    }
+}
+
+if (cutBtn) {
+    cutBtn.addEventListener('click', function() {
+        if (!cakeCut) {
+            cakeCut = true;
+            cutBtn.disabled = true;
+            cutBtn.style.pointerEvents = 'none';
+            
+            // Add cutting animations
+            cake.classList.add('cutting');
+            knife.classList.add('cutting');
+            
+            // Create particles
+            createCakeParticles();
+            
+            // Remove cake layers with staggered timing
+            const layers = cake.querySelectorAll('.cake-layer-3d');
+            layers.forEach((layer, index) => {
+                setTimeout(() => {
+                    layer.classList.add('cutting');
+                }, index * 150);
+            });
+            
+            // Show message
+            setTimeout(() => {
+                cakeMessage.style.display = 'block';
+            }, 300);
+            
+            // Show next button
+            setTimeout(() => {
+                cakeNextBtn.style.display = 'block';
+            }, 1200);
+        }
+    });
+}
+
+// Cake Next Button
+if (cakeNextBtn) {
+    cakeNextBtn.addEventListener('click', function() {
+        showScreen('envelope-screen');
+        cakeCut = false;
+        cutBtn.disabled = false;
+        cutBtn.style.pointerEvents = 'auto';
+        cakeMessage.style.display = 'none';
+        cakeNextBtn.style.display = 'none';
+        cake.classList.remove('cutting');
+        knife.classList.remove('cutting');
+        
+        // Reset cake layers
+        const layers = cake.querySelectorAll('.cake-layer-3d');
+        layers.forEach((layer) => {
+            layer.classList.remove('cutting');
+        });
+    });
+}
 
 // Envelope interaction
 const envelope = document.getElementById('envelope');
@@ -30,6 +161,73 @@ envelope.addEventListener('click', function() {
         setTimeout(() => {
             createConfetti();
             showScreen('message-screen');
+            
+            // Apply typewriter effect to birthday message
+            setTimeout(() => {
+                const happyBirthdayEl = document.querySelector('.happy-birthday');
+                const nameEl = document.querySelector('.name-text');
+                const letterBody = document.querySelector('.letter-body');
+                const letterGreeting = document.querySelector('.letter-greeting');
+                
+                // Clear all content first
+                if (happyBirthdayEl) {
+                    happyBirthdayEl.innerHTML = '';
+                }
+                if (nameEl) {
+                    nameEl.innerHTML = '';
+                }
+                if (letterGreeting) {
+                    letterGreeting.innerHTML = '';
+                }
+                if (letterBody) {
+                    const paragraphs = letterBody.querySelectorAll('p');
+                    paragraphs.forEach(p => {
+                        p.innerHTML = '';
+                    });
+                }
+                
+                // Now start typewriter effects
+                if (happyBirthdayEl) {
+                    typewriterEffect(happyBirthdayEl, '🎉 HAPPY BIRTHDAY! 🎉', 60);
+                }
+                
+                setTimeout(() => {
+                    if (nameEl) {
+                        typewriterEffect(nameEl, 'Sanchita', 80);
+                    }
+                }, 1500);
+                
+                setTimeout(() => {
+                    if (letterGreeting) {
+                        typewriterEffect(letterGreeting, 'My Dearest Sanchita,', 50);
+                    }
+                }, 2000);
+                
+                // Type out all paragraphs in letter body sequentially
+                if (letterBody) {
+                    const paragraphs = letterBody.querySelectorAll('p');
+                    const texts = [
+                        'Today is the day the world became a more beautiful place, because you were born. I wanted to take this moment to tell you something that I feel every single day...',
+                        'You are not just my lifeline, you are my greatest surprise, my sweetest dream, and my most beautiful reality. Your smile brightens my darkest days, your laugh is the best music I could ever hear, and your love has transformed my life completely.',
+                        'Every moment with you feels like a celebration. The way you care, the way you love, the way you make everyone around you feel special - it all makes me fall in love with you more and more each day.',
+                        'On this special day, I want you to know that you deserve all the happiness in the world. You deserve to be cherished, celebrated, and loved the way you love others. And I promise to spend the rest of my life making you smile and showing you how incredible you truly are.',
+                        'Thank you for being you. Thank you for loving me. Thank you for making life an adventure full of love and laughter.'
+                    ];
+                    
+                    let cumulativeDelay = 2700;
+                    
+                    paragraphs.forEach((p, index) => {
+                        if (texts[index]) {
+                            setTimeout(() => {
+                                typewriterEffect(p, texts[index], 20);
+                            }, cumulativeDelay);
+                            
+                            // Calculate time for this paragraph to finish typing, plus 500ms gap
+                            cumulativeDelay += (texts[index].length * 20) + 500;
+                        }
+                    });
+                }
+            }, 200);
         }, 1000);
     }
 });
